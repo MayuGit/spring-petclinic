@@ -13,7 +13,8 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/MayuGit/spring-petclinic.git'
             }
         }
-        stage(' App Build'){
+        
+         stage(' App Build'){
             steps{
                 sh 'mvn compile'
             }
@@ -23,7 +24,8 @@ pipeline{
         //        sh 'mvn test'
         //    }
         //}
-        stage('App Package'){
+        
+         stage('App Package'){
             steps{
                 sh 'mvn clean package'
             }
