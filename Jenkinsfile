@@ -10,7 +10,7 @@ pipeline{
     stages{
         stage('App Checkout'){
             steps{
-                git branch: 'main', url: 'https://github.com/MayuGit/SpringPetClinic.git'
+                git branch: 'main', url: 'https://github.com/MayuGit/spring-petclinic.git'
             }
         }
         stage(' App Build'){
