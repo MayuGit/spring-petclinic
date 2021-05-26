@@ -25,7 +25,7 @@ pipeline{
         //}
         stage('App Package'){
             steps{
-                sh 'mvn package'
+                sh 'mvn clean package'
             }
         }
         //stage('Deploy'){
