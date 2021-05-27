@@ -56,7 +56,7 @@ pipeline{
         stage('Check if image exist and cleanup') {
            steps {
                script{
-                   sh 'cp /var/jenkins_home/playbooks/dockerlogin.yml ${WORKSPACE}/dockercheck.yml'
+                   sh 'cp /var/jenkins_home/playbooks/dockercheck.yml ${WORKSPACE}/dockercheck.yml'
                }
                 ansiblePlaybook credentialsId: 'sshvagrant5', installation: 'myansible', playbook: '/var/jenkins_home/playbooks/dockercheck.yml'
            }
