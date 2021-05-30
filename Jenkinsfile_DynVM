@@ -58,7 +58,16 @@ pipeline{
                 script{
                     git credentialsId: 'mayugit', url: 'https://github.com/MayuGit/petansible.git'
                 }
-                //ansiblePlaybook credentialsId: 'sshvagrant5', extras: "-e tag=23", installation: 'myansible', playbook: '/var/jenkins_home/playbooks/VagrantCreate.yml'
+                //ansiblePlaybook credentialsId: 'sshvagrant5', extras: "-e tag=${BUILD_NUMBER}", installation: 'myansible', playbook: '/var/jenkins_home/playbooks/VagrantCreate.yml'
+            }
+        }
+        
+        stage('Deploy VM') {
+            steps {
+                //script{
+                //    sh 'cp /var/jenkins_home/playbooks/addhosts.yml ${WORKSPACE}/addhosts.yml'
+                //}
+                ansiblePlaybook credentialsId: 'sshvagrant5', extras: "-e tag=${BUILD_NUMBER}", installation: 'myansible', playbook: 'VagrantCreate.yml'
             }
         }
          
@@ -67,7 +76,7 @@ pipeline{
                //script{
                //    sh 'cp /var/jenkins_home/playbooks/dockercheck.yml ${WORKSPACE}/dockercheck.yml'
                //}
-                ansiblePlaybook credentialsId: 'sshvagrant5', installation: 'myansible', playbook: 'dockercheck.yml'
+                ansiblePlaybook credentialsId: 'sshvagrant5', installation: 'myansible', playbook: 'dockercheck_param.yml'
            }
         }
          
@@ -77,7 +86,7 @@ pipeline{
                //    sh 'cp /var/jenkins_home/playbooks/dockerlogin.yml ${WORKSPACE}/dockerlogin.yml'
                //}
                 //ansiblePlaybook credentialsId: 'sshvagrant5', extras: 'tag=${BUILD_NUMBER}', installation: 'myansible', playbook: '/var/jenkins_home/playbooks/dockerlogin.yml'
-                ansiblePlaybook credentialsId: 'sshvagrant5', extras: "-e tag=${BUILD_NUMBER}", installation: 'myansible', playbook: 'dockerlogin.yml'
+                ansiblePlaybook credentialsId: 'sshvagrant5', extras: "-e tag=${BUILD_NUMBER}", installation: 'myansible', playbook: 'DockerPullDeploy.yml'
            }
         }      
     }   
